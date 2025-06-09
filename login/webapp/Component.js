@@ -5,7 +5,8 @@
 sap.ui.define([
         "sap/ui/core/UIComponent",
         "sap/ui/Device",
-        "login/model/models"
+        "login/model/models",
+        // "login/Firebase"
     ],
     function (UIComponent, Device, models) {
         "use strict";
@@ -29,6 +30,8 @@ sap.ui.define([
 
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
+
+                // this.setModel(Firebase.initializeFirebase(), "fbModel");
             }
         });
     }

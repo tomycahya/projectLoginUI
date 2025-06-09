@@ -9,18 +9,21 @@
         id="page"
         title="{i18n>title}"
         showHeader="false"
+        class="vbox"
     >
         <content>
             <VBox
                 id="loginBox"
-                class="sapUiSmallMargin"
+                class="sapUiSmallMargin "
                 justifyContent="Center"
                 alignItems="Center"
                 width="100%"
+                alignContent="Center"
+                fitContainer="true"
             >
                 <Panel
                     id="panel1"
-                    headerText="Login Page"
+                    headerText="{i18n>loginpage}"
                     width="100%"
                     class="sapUiResponsiveMargin"
                     expandable="false"

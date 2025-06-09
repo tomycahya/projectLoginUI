@@ -1,27 +1,44 @@
-sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast"
-],
-function (Controller,MessageToast) {
+sap.ui.define(
+  ["sap/ui/core/mvc/Controller", "sap/m/MessageToast"],
+  function (Controller, MessageToast) {
     "use strict";
 
     return Controller.extend("login.controller.Login", {
-        onInit: function () {
+      onInit: function () {
 
-        },
-        onLoginPress: function () {
-            // Get the input values from the view
-            var oView = this.getView();
-            var sUsername = oView.byId("usernameInput").getValue();
-            var sPassword = oView.byId("passwordInput").getValue();
+        // var fireAuth = this.getView().getModel("fbModel")
+        // console.log(fireAuth);
+      },
+      onLoginPress: function () {
+        // Get the input values from the view
+        var oView = this.getView();
+        sap.ui.core.BusyIndicator.show();
+        var sUsername = oView.byId("usernameInput").getValue();
+        var sPassword = oView.byId("passwordInput").getValue();
 
-            // Perform login logic here (e.g., call a backend service)
-            if (sUsername === "admin" && sPassword === "admin") {
-                MessageToast.show("Login successful!");
-                // Navigate to the next page or perform further actions
-            } else {
-                MessageToast.show("Invalid username or password.");
-            }
+        try {
+            var oModel = this.getView().getModel("fbModel").getData();
+            console.log(oModel);
+            var fireAuth = oModel.fireAuth;
+            var firestoreData = oModel.firestore;
+            fireAuth.signInWithEmailAndPassword(email, password).then(function (usersigned) {
+                sap.ui.core.BusyIndicator.hide();
+                MessageBox.success("You are Logged in!");
+                that.onReset();
+            }).catch(function (error) {
+                sap.ui.core.BusyIndicator.hide();
+                // Handle Errors here.
+                errorMessage = error.message;
+                MessageBox.error(errorMessage);
+            });
+        } catch (error) {
+          // Handle any errors that occur during the login process
+          sap.ui.core.BusyIndicator.hide();
+          MessageToast.show("Login failed: " + error.message);
+          return;
+            
         }
+      },
     });
-});
+  }
+);
