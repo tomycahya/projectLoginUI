@@ -10,13 +10,13 @@ sap.ui.define([
     initializeFirebase: function () {
         // Replace with your config here
       const firebaseConfig = {
-        apiKey: "AIzaSyBAjwLXJ5l9Gx4H_FHhj8DiS-oJSBpr4jE",
-        authDomain: "test-f652f.firebaseapp.com",
-        projectId: "test-f652f",
-        storageBucket: "test-f652f.firebasestorage.app",
-        messagingSenderId: "532096326208",
-        appId: "1:532096326208:web:537e21ba2fd618d8665da5",
-        measurementId: "G-DF1RXW3V09",
+        apiKey: "",
+        authDomain: "",
+        projectId: "",
+        storageBucket: "",
+        messagingSenderId: "",
+        appId: "",
+        measurementId: "",
       };
       console.log("Firebase Config: ", firebaseConfig);
       // Initialize Firebase with the Firebase-config
